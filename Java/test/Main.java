@@ -1,9 +1,27 @@
 package test;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
-public class Main {
 
+
+//The following was used as base code to get started, comparison of original and final in github repository
+//https://github.com/vivianamarquez-2013/Object-Oriented-Programming-with-Java/blob/master/II-8-12-OnlineShop
+
+public class Main {
+//	protected static Scanner options;
+//	public static int directionInput;
+//	
+//	public Main(int directionInput) {
+//		Main.options = new Scanner(System.in);
+//		Main.directionInput = directionInput;
+//    }
 
     public static void main(String[] args) {
     	System.out.println("** Welcome to OutsideTheBox.com: for an unconventional approach to showing you understand the concepts **\n");
@@ -32,10 +50,19 @@ public class Main {
         System.out.println("BinBags: " + store.stock("BinBags"));
         System.out.println("\n");
         
+        Shop.direction();
+        
+//        Shop shop = new Shop(store, new Scanner(System.in), 1);  //*A* initialises interaction with customer, intro & question
+//		shop.manage("buy?");//}
+//
         
     	//and ask what the customer wants to buy 
-        Shop shop = new Shop(store, new Scanner(System.in), 1);  //*A* initialises interaction with customer, intro & question
-        shop.manage("buy?");
+        
+        
+    
+    }
+    
+}
     	
         
                            
@@ -65,7 +92,7 @@ public class Main {
 //         purchase.increaseAmount();
 //         System.out.println( purchase );
 //         
-         shop.manage("do next, buy more?");
+
         
         //12.5
         /*
@@ -99,11 +126,6 @@ public class Main {
          System.out.println("basket price: " + basket.price() +"\n");
          */
         //12.8
+
         
-
-    }
-
-
-
-}
-
+        

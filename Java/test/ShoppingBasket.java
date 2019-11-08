@@ -23,19 +23,20 @@ public ShoppingBasket(int quantityInput, Storehouse store, Scanner reader)  {
 
 public void add(String product, double price) {
 	
-  Purchase p = new Purchase(product, quantityInput, price);
+			
+  Purchase p = new Purchase(product, 1, price, null);
 
   if (basket.containsKey(product)) {
 
       basket.get(product).increaseAmount();
-
-     // p.increaseAmount();
-    //  basket.put(product, (basket.get(product)+price));
+      p.increaseAmount();
+      //basket.put(product, (basket.get(product)+price));
+      
   } else {
 
 //      Purchase p = new Purchase(product,quantityInput, price);
       basket.put(product, p);
-      System.out.printf("Entry to basket");
+    //  System.out.printf("Entry to basket");
 
   }
  // System.out.println(p.price());
