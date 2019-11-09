@@ -1,20 +1,17 @@
 package test;
 
-import java.util.ArrayList;
 
 public class Purchase {
 
   private String product;
   private int amount;
   protected static double unitPrice;
-  private ArrayList<Purchase> SList ;
 
-  public Purchase(String product, int amount, double unitPrice, ArrayList<Purchase> SList) {
+  public Purchase(String product, int amount, double unitPrice) {
 
       this.product = product;
       this.amount = amount;
       this.unitPrice = unitPrice;
-      this.SList = SList;
   }
 
   public double price() {
@@ -25,9 +22,9 @@ public class Purchase {
 
   }
 
-  public int increaseAmount() {
+  public void increaseAmount() {
       this.amount = this.amount + 1;
-      return this.amount;
+      
      
   }
 

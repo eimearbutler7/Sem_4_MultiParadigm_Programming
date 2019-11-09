@@ -11,9 +11,12 @@ import java.util.Scanner;
 
 public class ShoppingBasket extends Shop {
 
-//ArrayList<Purchase> basket = new ArrayList<Purchase>();
+public static ArrayList<String> ShopBasket = new ArrayList<String>();
+
 HashMap<String, Purchase> basket = new HashMap<String, Purchase>() {
 };
+
+
 
 public ShoppingBasket(int quantityInput, Storehouse store, Scanner reader)  {
 	super(store, reader, quantityInput);
@@ -24,19 +27,21 @@ public ShoppingBasket(int quantityInput, Storehouse store, Scanner reader)  {
 public void add(String product, double price) {
 	
 			
-  Purchase p = new Purchase(product, 1, price, null);
+  Purchase p = new Purchase(product, quantityInput, price);
 
   if (basket.containsKey(product)) {
 
       basket.get(product).increaseAmount();
-      p.increaseAmount();
+      ShoppingBasket.ShopBasket.add(product);
+      //p.increaseAmount();
       //basket.put(product, (basket.get(product)+price));
       
   } else {
 
 //      Purchase p = new Purchase(product,quantityInput, price);
       basket.put(product, p);
-    //  System.out.printf("Entry to basket");
+      ShoppingBasket.ShopBasket.add(product);
+      //System.out.printf("Entry to basket");
 
   }
  // System.out.println(p.price());
