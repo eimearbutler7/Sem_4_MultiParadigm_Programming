@@ -3,9 +3,10 @@
 # Assignment 1 MultiParadigm Programming
 ## 17th November 2019, Eimear Butler G00364802
 
-----
-Note, word file also included in Repository for reference
-----
+
+**Note, word file also included in Repository for reference**
+
+
 This assignment has provided me with many examples of the core concepts of C and Java programming languages as well as the similarities and differences in their characteristics. 
 
 ### Procedural Programming – C Programming Language
