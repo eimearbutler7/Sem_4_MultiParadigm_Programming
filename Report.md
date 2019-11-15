@@ -9,7 +9,7 @@
 
 This assignment has provided me with many examples of the core concepts of C and Java programming languages as well as the similarities and differences in their characteristics. 
 
-### Procedural Programming – C Programming Language
+### Procedural Programming – working example in C Programming Language
 I began programming with C and immediately could feel the significant difference from other higher-level languages I have been using like Python and Javascript. It was incredibly difficult to get started with even having watched the tutorials and others program it. Although I followed the logic while watching others work with it, taking over myself brought many challenges in getting the environment set up, getting used to compiling the program before execution and finding that trouble shooting was near impossible as I didn’t know where to start. It also doesn’t help that googling solutions for “C” brings up mostly those related to “C#” and “C++”. My first observation, therefore, was that in practical terms, this language is not so user friendly, particularly for beginners. 
   
 #### What is procedural programming?
@@ -25,7 +25,7 @@ Due to the open access to all Structs at all times, security is another feature 
 
 ----------------
 
-### Object Orientated Programming – example “Java”
+### Object Orientated Programming – working example in Java Programming Lsnguage
 
 #### The 4 key concepts Encapsulation - Abstraction – Inheritance - Polymorphism
 
