@@ -53,6 +53,11 @@ struct ProductStock {
 	int quantity;
 };
 
+//struct LProductStock {
+//	struct Product product;
+//	int quantity;
+//};
+
 struct Shop {
 	double cash;
 	struct ProductStock stock[20];
@@ -215,38 +220,8 @@ struct Customer createCustomer3()
 	return customer;
 }
 
-struct ProductStock LiveBuy(){
-//create strings to use below
-    char* Liveproduct;
-    char* Livequantity;
-    char* strYN;
-
-//pose questions to the user and save the input in the established string objects
-   printf("What would you like to buy?  ");
-    scanf("%s", Liveproduct); //live mode: https://www.tutorialspoint.com/c_standard_library/c_function_scanf.htm
-    printf("How Many?  ");
-    scanf("%s", Livequantity);
-    double Livequantity2 = atof(Livequantity); //convert the quantity to a double
-
-//add both the name of the product and quantity to the shoppingList struct
-    struct ProductStock shoppingList = { Liveproduct, Livequantity2 }; //add the products to the shoppingList
-    printProduct(Liveproduct);
-    printf("Added to shoppingList.\n");
-
-//pose next question using same process
-    printf("Would you like to buy more? Y/N  ");
-    scanf("%s", strYN);
-    if (strYN == "Y"){
-         LiveBuy(); //repeat this struct to add more to the shopping list
-    }
-    if (strYN == "N"){
-       makeSale2(); //move to make sale struct to confirmsale and adjust cash and budget totals
-    }
-    return shoppingList;
-}
 
 struct LCustomer LiveCustomer()
-{
     {
 //create strings to use below
   char* Livename[20];
@@ -261,13 +236,48 @@ struct LCustomer LiveCustomer()
 
 //add both the name and budget inputted to the Lcustomer struct (Live Customer)
     struct LCustomer Lc = {Livename, Livebudget2};
-
+    printLCustomer(Lc);
 //activate LiveBuy Struct to continue receiving user input
-    LiveBuy();
+        int LproductInput;
+    char* Lproduct;
+    int Lquantity;
+    int decYN;
 
-}//return Lc;
-//return 0;
+//pose questions to the user and save the input in the established string objects
+   printf("\n");
+   printf("*Select your purchase*\n");
+   printf("1) Coke Can\n");
+   printf("2) Bread\n");
+   printf("3) Spagetti\n");
+   printf("4) Tomato Sauce\n");
+   printf("5) Bin Bags\n");
+   scanf("%d", &LproductInput);//live mode: https://www.tutorialspoint.com/c_standard_library/c_function_scanf.htm
+    if (LproductInput == 1){ Lproduct = "CokeCan";}
+    else if (LproductInput == 2){ Lproduct = "Bread";}
+    else if (LproductInput == 3){ Lproduct = "Spagetti";}
+    else if (LproductInput == 4){ Lproduct = "TomatoSauce";}
+    else if (LproductInput == 5){ Lproduct = "BinBags";}
+    //else {LiveBuy();}
+
+    printf("How Many?  ");
+    scanf("%d", &Lquantity);
+
+    //add both the name of the product and quantity to the shoppingList struct
+
+    printf("\n");
+    printf("Adding to shoppingList....\n");
+    printf("\n");
+    printf("-- PRODUCT -- PRICE -- QUANTITY --\n");
+    struct Product product = { Lproduct };
+    struct ProductStock shoppingList = { product, Lquantity }; //add the products to the shoppingList
+    printProduct(product);
+	printf("  %d        \n", Lquantity);
+    printf("Added to shoppingList.\n");
+
+
+return Lc;
 }
+
 
 void printLCustomer(struct LCustomer c)
 {
@@ -282,7 +292,7 @@ void printLCustomer(struct LCustomer c)
 //create methods to perform functions on the structs.
 void printProduct(struct Product p)
 {
-    int x = (-(strlen(p.name)) + 16);
+    int x = (-(strlen(p.name)) + 16); //source: https://www.programiz.com/c-programming/library-function/string.h/strlen
     //printf("%d", x);
 	printf(" %s %*.2f      ", p.name,x, p.price);
 
@@ -340,132 +350,12 @@ struct Shop createAndStockShop()
 		struct Product product = { name, price };
 		struct ProductStock stockItem = { product, quantity };
 		shop.stock[shop.index++] = stockItem;
+
        // printf("NAME OF PRODUCT %s PRICE %.2f QUANTITY %d\n", name, price, quantity);
 
     }
 	return shop;
 }
-
-
-
-void printShop(struct Shop s)
-{
-    printf("Welcome to LostAtC.com \n");
-    printf("\n");
-	printf("Starting Cash in Shop: %.2f\n", s.cash);
-    printf("\n");
-	printf("-- PRODUCT -- PRICE -- STOCK -- \n");
-
-	for (int i = 0; i < s.index; i++)
-	{
-		printProduct(s.stock[i].product);
-		printf("%d\n", s.stock[i].quantity);
-			}
-    printf("===============================\n");
-    printf("\n");
-
-	}
-
-
-double find(struct Shop s, char* name)
-{
-	for (int i = 0; i < s.index; i++)
-	{
-		if (strcmp(name, s.stock[i].product.name) == 0){
-			return s.stock[i].product.price;
-		}
-	}
-	return -1;
-}
-
-void makeSale() {{
-        struct Shop shop = createAndStockShop();
-        struct Customer customer = createCustomer();
-
-        double totalCostForCustomer = 0;
-
-        printf("--------------------------------------\n");
-
-        for(int i=0; i < 3; i++){
-            struct Product p = customer.shoppingList[i].product;
-            double price = find(shop, p.name);
-            printf("The price of %s in the shop is %.2f\n", p.name, price);
-            double totalCostOfItem = customer.shoppingList[i].quantity * price;
-            printf("You want %d of %s, that will cost you %.2f\n", customer.shoppingList[i].quantity, p.name, totalCostOfItem);
-            totalCostForCustomer += totalCostOfItem;
-        }
-        printf("The total cost for the customer will be %.2f\n", totalCostForCustomer);
-        printf(" \n", totalCostForCustomer);
-
-        double totalCashForShop = shop.cash + totalCostForCustomer;
-        printf("The updated total cash for the shop is: %.2d\n", totalCashForShop);}
-return 0;}
-
-void makeSale3() {{
-        struct Shop shop = createAndStockShop();
-        struct Customer customer = createCustomer2();
-
-        double totalCostForCustomer = 0;
-
-        printf("--------------------------------------\n");
-
-        for(int i=0; i < 3; i++){
-            struct Product p = customer.shoppingList[i].product;
-            double price = find(shop, p.name);
-            printf("The price of %s in the shop is %.2f\n", p.name, price);
-            double totalCostOfItem = customer.shoppingList[i].quantity * price;
-            printf("You want %d of %s, that will cost you %.2f\n", customer.shoppingList[i].quantity, p.name, totalCostOfItem);
-            totalCostForCustomer += totalCostOfItem;
-        }
-        printf("The total cost for the customer will be %.2f\n", totalCostForCustomer);
-        printf(" \n", totalCostForCustomer);
-
-        double totalCashForShop = shop.cash + totalCostForCustomer;
-        printf("The updated total cash for the shop is: %.2d\n", totalCashForShop);}
-return 0;}
-
-void makeSale4() {{
-        struct Shop shop = createAndStockShop();
-        struct Customer customer = createCustomer3();
-
-        double totalCostForCustomer = 0;
-
-        printf("--------------------------------------\n");
-
-        for(int i=0; i < 3; i++){
-            struct Product p = customer.shoppingList[i].product;
-            double price = find(shop, p.name);
-            printf("The price of %s in the shop is %.2f\n", p.name, price);
-            double totalCostOfItem = customer.shoppingList[i].quantity * price;
-            printf("You want %d of %s, that will cost you %.2f\n", customer.shoppingList[i].quantity, p.name, totalCostOfItem);
-            totalCostForCustomer += totalCostOfItem;
-        }
-        printf("The total cost for the customer will be %.2f\n", totalCostForCustomer);
-        printf(" \n", totalCostForCustomer);
-
-        double totalCashForShop = shop.cash + totalCostForCustomer;
-        printf("The updated total cash for the shop is: %.2d\n", totalCashForShop);}
-return 0;}
-
-void makeSale2() {{
-        struct Shop shop = createAndStockShop();
-        struct LCustomer Lc = LiveCustomer();
-
-        double totalCostForCustomer = 0;
-        for(int i=0; i < 3; i++){
-            struct Product p = Lc.shoppingList[i].product;
-            double price = find(shop, p.name);
-            printf("The price of %s in the shop is %.2f\n", p.name, price);
-            double totalCostOfItem = Lc.shoppingList[i].quantity * price;
-            printf("You want %d of %s, that will cost you %.2f\n", Lc.shoppingList[i].quantity, p.name, totalCostOfItem);
-            totalCostForCustomer += totalCostOfItem;
-        }
-        printf("The total cost for the customer will be %.2f\n", totalCostForCustomer);
-        printf(" \n", totalCostForCustomer);
-
-        double totalCashForShop = shop.cash + totalCostForCustomer;
-        printf("The updated total cash for the shop is: %.2d\n", totalCashForShop);}
-return 0;}
 
 struct Shop decision(){
     int dec1;
@@ -504,10 +394,10 @@ struct Shop decision(){
    }}
 
    else if (dec1 == 2){
-        struct Shop shop = createAndStockShop();
-        LiveCustomer();
-        struct LCustomer c;
-        printLCustomer(c);
+        //struct Shop shop = createAndStockShop();
+        //LiveCustomer();
+        //struct LCustomer c;
+        //printLCustomer(c);
         makeSale2();
         decision();
 
@@ -523,6 +413,317 @@ struct Shop decision(){
         exit(0);}}
 
 }
+
+
+void printShop(struct Shop s)
+{
+    printf("Welcome to LostAtC.com \n");
+    printf("\n");
+	printf("Starting Cash in Shop: %.2f\n", s.cash);
+    printf("\n");
+	printf("-- PRODUCT -- PRICE -- STOCK -- \n");
+
+	for (int i = 0; i < s.index; i++)
+	{
+		printProduct(s.stock[i].product);
+		printf("%d\n", s.stock[i].quantity);
+			}
+    printf("===============================\n");
+    printf("\n");
+
+	}
+
+
+double find(struct Shop s, char* name)
+{
+	for (int i = 0; i < s.index; i++)
+	{
+		if (strcmp(name, s.stock[i].product.name) == 0){
+			return s.stock[i].product.price;
+		}
+	}
+	return -1;
+}
+
+
+void makeSale() {
+        struct Shop shop = createAndStockShop();
+        struct Customer customer = createCustomer();
+
+        double totalCostForCustomer = 0;
+
+        printf("--------------------------------------\n");
+        printf("Total Cost of Shopping List:\n");
+        printf("--PRODUCT -- PRICE -- QUANITY -- TOTAL --\n");
+
+
+        for(int i=0; i < 5; i++){
+            struct Product p = customer.shoppingList[i].product;
+            double price = find(shop, p.name);
+            double totalCostOfItem = customer.shoppingList[i].quantity * price;
+            totalCostForCustomer += totalCostOfItem;
+            int x = (-(strlen(p.name)) + 16); //source: https://www.programiz.com/c-programming/library-function/string.h/strlen
+            char* stry = " ";
+            //printf("%d  ", y);
+            printf("%s %*.2f %4s %03d %5s %.2f\n", p.name, x, price, stry, customer.shoppingList[i].quantity, stry, totalCostOfItem); //source: https://www.codingunit.com/printf-format-specifiers-format-conversions-and-formatted-output
+            }
+
+        if (totalCostForCustomer<customer.budget ){
+            printf("Total cost: %.2feuro\n", totalCostForCustomer);
+            printf(" \n");
+            customer.budget = (customer.budget-totalCostForCustomer);
+            printf("%s now have %.2feuro remaining\n", customer.name, customer.budget);
+            printf(" \n");
+            double totalCashForShop = shop.cash + totalCostForCustomer;
+            struct Shop shop = {totalCostForCustomer};
+            printf("The updated total cash for the shop is: %.2deuro\n", shop.cash);}
+
+
+
+        else{
+            printf("Total cost: %.2f\n", totalCostForCustomer);
+            printf(" \n");
+            printf("It appears you do not have enough money for this purchase,\n");
+            printf("please consider your shopping list again. \n");
+            printf("\n");
+            decision();
+        }
+            printf("\n");
+            printf("-- Updated Stock -- \n");
+            printf("-- PRODUCT -- PRICE -- STOCK -- \n");
+
+            for (int i = 0; i < shop.index; i++)
+            {
+                printProduct(shop.stock[i].product);
+              //  printf("%d\n", shop.stock[i].quantity);
+
+			  if (strcmp(customer.shoppingList[i].product.name, shop.stock[i].product.name) == 0){
+                int stockUpdate = shop.stock[i].quantity - customer.shoppingList[i].quantity;
+                printf("%d      \n", stockUpdate);
+                updateStock(&stockUpdate);
+                //printf("%d\n", shop.stock[i].quantity);
+
+		}}
+            printf("\n");
+
+
+        for (int i = 0; i < shop.index; i++){
+        if (shop.stock[i].quantity < customer.shoppingList[i].quantity){
+            printf("\n");
+            printf("!!!!!!!!!!!!!!!!!!!!! WARNING !!!!!!!!!!!!!!!!!!!!!!!!!\n");
+            printf("Unfortunately, as you can see above we cannot fulfil your full order.\n");
+            printf("There are only %d %ss\n", shop.stock[i].quantity, shop.stock[i].product.name);
+            printf("The last of the stock has been provided for you: %d %s\n",shop.stock[i].quantity, shop.stock[i].product.name);
+            printf("%d", shop.stock[i].quantity);
+            double overOrderCost = ((customer.shoppingList[i].quantity-shop.stock[i].quantity) *(find(shop, customer.shoppingList[i].product.name)));
+            double recalculatedCost = totalCostForCustomer -overOrderCost;
+            printf("\n");
+            printf("Recalculated cost is: %.2f\n", recalculatedCost);
+            printf(" \n");
+            customer.budget = customer.budget+overOrderCost;
+            printf("%s you now have %.2f remaining\n", customer.name, customer.budget);
+            printf(" \n");}}
+
+
+
+return 0;}
+
+void updateStock(struct ProductStock  *p, int q )
+  {
+
+     p -> quantity = q;
+    //printf("%d\n", q);
+
+     return 0;
+  }
+
+void makeSale3() {
+        struct Shop shop = createAndStockShop();
+        struct Customer customer = createCustomer2();
+
+        double totalCostForCustomer = 0;
+
+        printf("--------------------------------------\n");
+        printf("Total Cost of Shopping List\n");
+        printf("--PRODUCT -- PRICE -- QUANITY -- TOTAL --\n"); //source: https://www.codingunit.com/printf-format-specifiers-format-conversions-and-formatted-output
+
+        for(int i=0; i < 5; i++){
+
+            struct Product p = customer.shoppingList[i].product;
+            double price = find(shop, p.name);
+            double totalCostOfItem = customer.shoppingList[i].quantity * price;
+            totalCostForCustomer += totalCostOfItem;
+            int x = (-(strlen(p.name)) + 16); //source: https://www.programiz.com/c-programming/library-function/string.h/strlen
+            char* stry = " ";
+            //printf("%d  ", y);
+            printf("%s %*.2f %4s %03d %5s %.2f\n", p.name, x, price, stry, customer.shoppingList[i].quantity, stry, totalCostOfItem); //source: https://www.codingunit.com/printf-format-specifiers-format-conversions-and-formatted-output
+
+           }
+        if (totalCostForCustomer<customer.budget ){
+            printf("Total cost: %.2f\n", totalCostForCustomer);
+            printf(" \n");
+            customer.budget = (customer.budget-totalCostForCustomer);
+            printf("%s now have %.2f remaining\n", customer.name, customer.budget);
+            printf(" \n");
+            double totalCashForShop = shop.cash + totalCostForCustomer;
+            struct Shop shop = {totalCostForCustomer};
+            printf("The updated total cash for the shop is: %.2d\n", shop.cash);}
+
+
+        else{
+            printf("Total cost: %.2f\n", totalCostForCustomer);
+            printf(" \n");
+            printf("It appears you do not have enough money for this purchase,\n");
+            printf("please consider your shopping list again. \n");
+            printf("\n");
+            decision();
+        }
+            printf("\n");
+            printf("-- Updated Stock -- \n");
+            printf("-- PRODUCT -- PRICE -- STOCK -- \n");
+
+
+        for (int i = 0; i < shop.index; i++)
+            {
+                printProduct(shop.stock[i].product);
+              //  printf("%d\n", shop.stock[i].quantity);
+
+			  if (strcmp(customer.shoppingList[i].product.name, shop.stock[i].product.name) == 0){
+                int stockUpdate = shop.stock[i].quantity - customer.shoppingList[i].quantity;
+                printf("%d      \n", stockUpdate);
+                //updateStock(&stockUpdate);
+                //printf("%d\n", shop.stock[i].quantity);
+			}}
+            printf("\n");
+
+        for (int i = 0; i < shop.index; i++){
+        if (shop.stock[i].quantity < customer.shoppingList[i].quantity){
+            printf("\n");
+            printf("!!!!!!!!!!!!!!!!!!!!! WARNING !!!!!!!!!!!!!!!!!!!!!!!!!\n");
+            printf("Unfortunately, as you can see above we cannot fulfil your full order.\n");
+            printf("There are only %d %ss\n", shop.stock[i].quantity, shop.stock[i].product.name);
+            printf("The last of the stock has been provided for you: %d %s\n",shop.stock[i].quantity, shop.stock[i].product.name);
+            printf("%d", shop.stock[i].quantity);
+            double overOrderCost = ((customer.shoppingList[i].quantity-shop.stock[i].quantity) *(find(shop, customer.shoppingList[i].product.name)));
+            double recalculatedCost = totalCostForCustomer -overOrderCost;
+            printf("\n");
+            printf("Recalculated cost is: %.2f\n", recalculatedCost);
+            printf(" \n");
+            customer.budget = customer.budget+overOrderCost;
+            printf("%s you now have %.2f remaining\n", customer.name, customer.budget);
+            printf(" \n");}}
+
+
+return 0;}
+
+void makeSale4() {
+        struct Shop shop = createAndStockShop();
+        struct Customer customer = createCustomer3();
+
+        double totalCostForCustomer = 0;
+
+        printf("--------------------------------------\n");
+        printf("Total Cost of Shopping List\n");
+        printf("--PRODUCT -- PRICE -- QUANITY -- TOTAL --\n"); //source: https://www.codingunit.com/printf-format-specifiers-format-conversions-and-formatted-output
+
+        for(int i=0; i < 5; i++){
+            struct Product p = customer.shoppingList[i].product;
+            double price = find(shop, p.name);
+            double totalCostOfItem = customer.shoppingList[i].quantity * price;
+            totalCostForCustomer += totalCostOfItem;
+            int x = (-(strlen(p.name)) + 16); //source: https://www.programiz.com/c-programming/library-function/string.h/strlen
+            char* stry = " ";
+            //printf("%d  ", y);
+            printf("%s %*.2f %4s %03d %5s %.2f\n", p.name, x, price, stry, customer.shoppingList[i].quantity, stry, totalCostOfItem); //source: https://www.codingunit.com/printf-format-specifiers-format-conversions-and-formatted-output
+
+           }
+
+        if (totalCostForCustomer<customer.budget){
+            printf("Total cost: %.2f\n", totalCostForCustomer);
+            printf(" \n");
+            customer.budget = (customer.budget-totalCostForCustomer);
+            printf("%s you now have %.2f remaining\n", customer.name, customer.budget);
+            printf(" \n");
+            //double totalCashForShop = ;
+            struct Shop shop = {totalCostForCustomer};
+            printf("The updated total cash for the shop is: %.2d\n", shop.cash);}
+
+        else{
+            printf("Total cost: %.2f\n", totalCostForCustomer);
+            printf(" \n");
+            printf("It appears you do not have enough money for this purchase,\n");
+            printf("please consider your shopping list again. \n");
+            printf("\n");
+            decision();
+        }
+
+
+            printf("\n");
+            printf("-- Updated Stock -- \n");
+            printf("-- PRODUCT -- PRICE -- STOCK -- \n");
+
+            for (int i = 0; i < shop.index; i++)
+            {
+                printProduct(shop.stock[i].product);
+              //  printf("%d\n", shop.stock[i].quantity);
+
+			  if (strcmp(customer.shoppingList[i].product.name, shop.stock[i].product.name) == 0){
+                int stockUpdate = shop.stock[i].quantity - customer.shoppingList[i].quantity;
+                printf("%d      \n", stockUpdate);
+                //updateStock(&stockUpdate);
+                //printf("%d\n", shop.stock[i].quantity);
+                }}
+
+        for (int i = 0; i < shop.index; i++){
+        if (shop.stock[i].quantity < customer.shoppingList[i].quantity){
+            printf("\n");
+            printf("!!!!!!!!!!!!!!!!!!!!! WARNING !!!!!!!!!!!!!!!!!!!!!!!!!\n");
+            printf("Unfortunately, as you can see above we cannot fulfil your full order.\n");
+            printf("There are only %d %ss\n", shop.stock[i].quantity, shop.stock[i].product.name);
+            printf("The last of the stock has been provided for you: %d %s\n",shop.stock[i].quantity, shop.stock[i].product.name);
+           // printf("%d", shop.stock[i].quantity);
+            double overOrderCost = ((customer.shoppingList[i].quantity-shop.stock[i].quantity) *(find(shop, customer.shoppingList[i].product.name)));
+            double recalculatedCost = totalCostForCustomer -overOrderCost;
+            printf("\n");
+            printf("Recalculated cost is: %.2f\n", recalculatedCost);
+            printf(" \n");
+            customer.budget = customer.budget+overOrderCost;
+            printf("%s you now have %.2f remaining\n", customer.name, customer.budget);
+            printf(" \n");}
+
+                printf("\n");}
+
+//            printf("-- Updated Stock -- \n");
+//            printf("-- PRODUCT -- PRICE -- STOCK -- \n");}
+
+//            printf("The updated total cash for the shop is: %.2d\n", shop.cash);
+ //           printf("\n");}
+
+
+return 0;}
+
+void makeSale2() {{
+        struct Shop shop = createAndStockShop();
+        struct LCustomer customer = LiveCustomer();
+
+        double totalCostForCustomer = 0;
+
+        for(int i=0; i < 5; i++){
+            struct Product p = customer.shoppingList[i].product;
+            double price = find(shop, p.name);
+            double totalCostOfItem = customer.shoppingList[i].quantity * price;
+            totalCostForCustomer += totalCostOfItem;
+            int x = (-(strlen(p.name)) + 16); //source: https://www.programiz.com/c-programming/library-function/string.h/strlen
+            char* stry = " ";
+            printf("%s %*.2f %4s %03d %5s %.2f\n", p.name, x, price, stry, customer.shoppingList[i].quantity, stry, totalCostOfItem); //source: https://www.codingunit.com/printf-format-specifiers-format-conversions-and-formatted-output
+     }
+        printf("The total cost for the customer will be %.2f\n", totalCostForCustomer);
+        printf(" \n", totalCostForCustomer);
+
+        double totalCashForShop = shop.cash + totalCostForCustomer;
+        printf("The updated total cash for the shop is: %.2d\n", totalCashForShop);}
+return 0;}
+
 
 
 //Initiate functionality from the "main" method
