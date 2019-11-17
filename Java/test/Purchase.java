@@ -2,6 +2,7 @@ package test;
 
 
 public class Purchase {
+//source: //https://github.com/vivianamarquez-2013/Object-Oriented-Programming-with-Java/blob/master/II-8-12-OnlineShop
 
   private String product;
   private int amount;
@@ -14,20 +15,21 @@ public class Purchase {
       this.unitPrice = unitPrice;
   }
 
+  //method to establish total price of products
   public double price() {
 
-      //public int price(), which returns the purchase price. This is obtained by raising the unit amount by the unit price.
-      //return (int) Math.pow(this.amount, this.unitPrice);
       return amount * unitPrice;
 
   }
 
+  //method to increase th estock levels
   public void increaseAmount() {
       this.amount = this.amount + 1;
       
      
   }
 
+  //method to format printing of product listing
   public String toString() {
 
       String s = "";

@@ -1,8 +1,5 @@
 package test;
 
-///CLASS ShoppingBasket
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -10,44 +7,43 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class ShoppingBasket extends Shop {
+//note it extends Shop class
+//source: //https://github.com/vivianamarquez-2013/Object-Oriented-Programming-with-Java/blob/master/II-8-12-OnlineShop
 
+	
 public static ArrayList<String> ShopBasket = new ArrayList<String>();
 
 HashMap<String, Purchase> basket = new HashMap<String, Purchase>() {
 };
 
 
-
+//shopping basket class is established and qualityInput, Storehouse and Scanner are all shared from Shop class) 
 public ShoppingBasket(int quantityInput, Storehouse store, Scanner reader)  {
 	super(store, reader, quantityInput);
-//	int QI = String.valueOf(Shop.quantityInput());
-
 }
 
+//creates method to add products to shopping basket
 public void add(String product, double price) {
 	
 			
   Purchase p = new Purchase(product, quantityInput, price);
 
+  //if products already exist there, increase their numbers
   if (basket.containsKey(product)) {
 
       basket.get(product).increaseAmount();
       ShoppingBasket.ShopBasket.add(product);
-      //p.increaseAmount();
-      //basket.put(product, (basket.get(product)+price));
-      
+ //othewise add them     
   } else {
 
-//      Purchase p = new Purchase(product,quantityInput, price);
       basket.put(product, p);
       ShoppingBasket.ShopBasket.add(product);
-      //System.out.printf("Entry to basket");
 
   }
- // System.out.println(p.price());
 
 }
 
+//method to establish price per product in basket
 public double price() {
 
   double price = 0;
@@ -60,6 +56,7 @@ public double price() {
 
 }
 
+// method to print out basket
 public void print() {
 
   String s = "";

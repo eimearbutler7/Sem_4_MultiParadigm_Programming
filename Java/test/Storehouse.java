@@ -1,19 +1,15 @@
 package test;
 
 
-///CLASS Storehouse
-
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
 
 
-
 public class Storehouse{
+	//source://https://github.com/vivianamarquez-2013/Object-Oriented-Programming-with-Java/blob/master/II-8-12-OnlineShop
 	
 
-
-//Principio de encasulapción.
 private HashMap<String, Double> prices = new HashMap<String, Double>();
 HashMap<String, Integer> stocks = new HashMap<String, Integer>();
 
