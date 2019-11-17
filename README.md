@@ -1,19 +1,31 @@
 # Sem_4_MultiParadigm_Programming
 
-<h2> Cover Page <h2> 
-I decided to include a cover page to explain my approach tot his assignment. I hope this will help you better understand my approach. 
+This repository contains the MultiParadigm Programming Assignment (Oct/Nov 2019).
 
+The 2 primary documents are:
+- the Shop.c for the demonstration using the C programming Language 
+- the test.java package for the demonstration using the Java programming Language 
 
-Project Introduction
-Assignment: Basic Shop Code with C & Java  Full Functionality Shop Program with C & Java
+All supplimentary documentation begins with a "z_" in order for it to remain at the bottom of the list of files.
+
+-------------------------
+
+# PROJECT APPROACH
+I decided to include my approach to this assignment in order to help you better understand my work but please do reach out to me if you have any questions. 
+
+**Project Aim**
+Assignment: Basic Shop Code with C & Java -> Full Functionality Shop Program with C & Java
  
-My Project approach a.k.a. the backwards approach: 
-Find a model with some similar functionality in Java  Introduce full assignment functionality to that model instead of the original model  go back to C and work to work down a level now understanding the broad structure of the language better
+**My Project approach was to take a backwards route:** 
+After spending come time setting up environments that worked, I got no where trying to build on the C model provided (at least before further tutorials were posted) so I moved onto Java and effectively began there. 
 
-Firstly, I followed the videos and understood the approach to building the foundation of the shop in both C and Java. 
-After spending come time setting up environments that worked. I tried to build upon the “Basic Shop Parameters” you had provided us in C however building methods from scratch was a step too far and I clearly had not got enough knowledge of the language to do this. I tried to took some additional tutorials in Codacademy but still struggled to get started. I moved onto Java and found it was not much easier. 
-Finally, I found a similar program that was simpler than your Java example but could get me off the ground. I simply started it as a test (hence the package is called ”Test”)  however I again struggled to integrate the new “base code” with yours therefore, right or wrong, I proceeded with the test code as I was able to interpret it better, manipulate it and  in the end get some functionality from it. It still took many, may hours of work to understand what was needed and trying to make that happen with null-pointer-exception and static vs non-static method challenges worked through frequently. I am sure this is a different approach to that of many students, but I felt I learned more from the assignment being able to progress my program further using this process. 
-My recommendation is to actually teach this backwards. Starting with Java and working down a level to C. There is more online support for Java and this was really needed.
+I again struggled to get off the ground so I found a model with some similar functionality in Github. [The file is available here.](https://github.com/vivianamarquez-2013/Object-Oriented-Programming-with-Java/blob/master/II-8-12-OnlineShop)
 
+I simply started it as a test (hence the package is called ”Test”) and I used this as a base to work from and introduce all the functionality require for the assignment. Ideally with time, I could have taken those principles back into the original format but sadly I did not get to do this. I am sure this is a different approach to that of many students, but I felt I learned more from the assignment being able to progress my program further using this process. 
+
+With this better working knowledge of similar but higher level Java and the further tutorials that were now available I was able to then work down a level in C building on the assigned base code.
+
+I restarted the work with C work and was able to get some functionality implemented.
+-------------------------
 
 
