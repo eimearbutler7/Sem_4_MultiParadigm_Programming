@@ -27,6 +27,8 @@ I simply started it as a test (hence the package is called ”Test”) and I use
 With this better working knowledge of similar but higher level Java and the further tutorials that were now available I was able to then work down a level in C building on the assigned base code.
 
 I restarted the work with C work and was able to get some functionality implemented.
+
+
 -------------------------
 
 
